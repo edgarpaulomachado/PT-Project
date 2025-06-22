@@ -4,6 +4,7 @@ import notification from "../../public/notification.png";
 import messages from "../../public/messages.png";
 import setting from "../../public/setting.png";
 import NaveButton from "./navButton";
+import profile from "../../public/profile.png";
 
 
 export default function Header() {
@@ -32,6 +33,10 @@ export default function Header() {
 
                 <div className="w-[47px] h-[46px] bg-white rounded-[50%]">
                     <Image src={setting} alt="" className="mx-auto mt-3 cursor-pointer"/>
+                </div>
+
+                <div className="w-[47px] h-[46px] bg-[#1BC768] rounded-[50%]">
+                    <Image src={profile} alt="" className="mx-auto cursor-pointer"/>
                 </div>
             </div>
         </div>

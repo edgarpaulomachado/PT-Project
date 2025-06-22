@@ -35,7 +35,7 @@ export default function Register() {
                 </div>
 
                 <div className="w-[600px] h-[755px] rounded-[25px] bg-[#F9F9F8]">
-                    <div className="w-full h-[645px] rounded-t-[45px] rounded-b-[25px] mt-[110px] px-4 py-8 bg-white">
+                    <div className="w-full h-[645px] rounded-t-[45px] rounded-b-[25px] mt-[110px] px-4 py-12 bg-white">
                         <div className="w-[365px] h-[49px] flex justify-between mx-auto">
                             <div className="w-[178px] h-[48px] bg-[#EEEEEE] rounded-[16px] flex justify-center items-center cursor-pointer">
                                 <Image src={google} alt={''} width={17} height={17} />
@@ -47,6 +47,29 @@ export default function Register() {
                                 <p className="text-[#616161] text-[12px]">Entrar com o Facebook</p>
                             </div>
                         </div>
+
+                        <form action="" className="w-[401px] h-[238px] mt-[80px] mx-auto">
+                            <div className="mt-4">
+                                <label className="text-[16px] font-bold">Email / Username</label>
+                                <input type="text" name="" id="" className="w-[380px] border-b-2 border-b-[#BDBDBD] outline-none outline-[#1BC768] mt-[6px]"/>
+                            </div>
+
+                            <div className="mt-8">
+                                <label className="text-[16px] font-bold">Password</label>
+                                <input type="password" name="" id="" className="w-[380px] border-b-2 border-b-[#BDBDBD] outline-none outline-[#1BC768] mt-[6px]"/>
+                            </div>
+
+                            <div className="w-[401px] h-auto flex justify-between mt-[40px]">
+                                <div className="w-[186px] h-[23px] flex my-auto gap-2">
+                                    <input type="checkbox" name="" id="" className="w-[24px] h-[22px] bg-[#7B76F140]"/>
+                                    <p className="text-[#757575] text-[10px] my-auto">Eu aceitos os termos e condições</p>
+                                </div>
+
+                                <button type="submit" className="w-[153px] h-[56px] bg-[#1BC768] text-white text-[16px] font-bold rounded-[50px] cursor-pointer">Entrar</button>
+                            </div>
+                        </form>
+
+                        <p className="text-[12px] text-[#424242] text-center mt-[50px]">Ainda não tens uma conta? <a href="" className="text-[12px] text-[#1BC768] font-bold">Registar-se</a></p>
                     </div>
                 </div>
             </div>
