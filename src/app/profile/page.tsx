@@ -36,6 +36,30 @@ export default function Profile() {
 
                     <div className="w-[310px] h-[444px] mt-[25px] px-0">
                         <p className="text-[24px] text-center">Edgar Machado</p>
+
+                        <div className="mt-[30px] pl-1">
+                            <p className="text-[16px]">Idade: <span className="font-bold">25</span></p>
+                            <p className="text-[16px]">Contacto: <span className="font-bold">+244 947636149</span></p>
+                            <p className="text-[16px]">Email: <span className="font-bold">kadyedgarpaulomachado@gmail.com</span></p>
+                            <p className="text-[16px]">Endereço: <span className="font-bold">Luanda</span></p>
+                        </div>
+
+                        <div className="mt-[60px] px-4 gap-2">
+                            <div className="h-[50px] border-b-2 flex justify-between px-2 my-auto">
+                                <p className="text-[16px]">Total de consultas</p>
+                                <p className="text-[16px] font-bold text-[#FFB266]">22</p>
+                            </div>
+
+                            <div className="h-[50px] border-b-2 flex justify-between px-2 my-auto mt-4">
+                                <p className="text-[16px]">Total de exames</p>
+                                <p className="text-[16px] font-bold text-[#28A745]">10</p>
+                            </div>
+
+                            <div className="h-[50px] border-b-2 flex justify-between px-2 my-auto mt-4">
+                                <p className="text-[16px]">Status</p>
+                                <p className="text-[16px] font-bold">Activo</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
