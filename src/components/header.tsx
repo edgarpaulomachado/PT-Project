@@ -1,3 +1,5 @@
+'use client';
+
 import Image from "next/image";
 import logo from "../../public/logo.png";
 import notification from "../../public/notification.png";
@@ -5,9 +7,17 @@ import messages from "../../public/messages.png";
 import setting from "../../public/setting.png";
 import NaveButton from "./navButton";
 import profile from "../../public/profile.png";
+import { useRouter } from 'next/navigation';
 
 
 export default function Header() {
+
+    const router = useRouter();
+
+    const handclick = () => {
+        router.push('../profile');
+    }
+
     return (
         <div className="w-full h-auto px-4 mt-4 flex justify-between">
             <div className="w-[124px] h-[55px]">
@@ -36,7 +46,7 @@ export default function Header() {
                 </div>
 
                 <div className="w-[47px] h-[46px] bg-[#1BC768] rounded-[50%]">
-                    <Image src={profile} alt="" className="mx-auto cursor-pointer"/>
+                    <Image src={profile} alt="" className="mx-auto cursor-pointer" onClick={handclick}/>
                 </div>
             </div>
         </div>
