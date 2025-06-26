@@ -18,11 +18,12 @@ export default function Profile() {
     const [contact, setContact] = useState('');
     const [gender, setGender] = useState('');
     const [adress, setAddress] = useState('');
+    const [pass, setPassword] = useState('');
     const [data, setData] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setData({ firstName, lastName, email, age, contact, gender, adress });
+        setData({ firstName, lastName, email, age, contact, gender, adress, pass });
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -30,7 +31,14 @@ export default function Profile() {
         setContact('');
         setGender('');
         setAddress('');
+        setPassword('');
     }
+
+    const [activeTab, setActiveTab] = useState('information');
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
 
 
     return (
@@ -90,9 +98,27 @@ export default function Profile() {
 
 
                 <div className="w-[797px] h-[739px] rounded-[25px] bg-[#F9F9F8]">
-                    <div className="w-[797px] h-[640px] rounded-t-[50px] rounded-b-[25px] bg-white mt-[100px] p-3">
 
-                        <form action="" className="flex justify-between px-4" onSubmit={handleSubmit}>
+                    <div className="w-full h-[99px] px-4 flex justify-between">
+
+                        <div className="mt-[50px]">
+                            <button onClick={() => handleTabChange('information')} className={`pb-2 ${activeTab === 'information' ? 'border-b-2 border-[#1BC768] text-[25px] font-bold cursor-pointer' : 'text-black font-bold text-[25px] cursor-pointer' } `}>Informações Pessoais</button>
+                        </div>
+
+                        <div className="mt-[50px]">
+                            <button onClick={() => handleTabChange('pass')} className={`pb-2 ${activeTab === 'pass' ? 'border-b-2 border-[#1BC768] text-[25px] font-bold cursor-pointer' : 'text-black font-bold text-[25px] cursor-pointer' } `}>Password</button>  
+                        </div>
+
+                        <div className="mt-[50px]">
+                            <button onClick={() => handleTabChange('documents')} className={`pb-2 ${activeTab === 'documents' ? 'border-b-2 border-[#1BC768] text-[25px] font-bold cursor-pointer' : 'text-black font-bold text-[25px] cursor-pointer' } `}>Documentos</button>  
+                        </div>
+
+                    </div>
+                    
+                    <div className="w-[797px] h-[640px] rounded-t-[50px] rounded-b-[25px] bg-white p-3">
+                        {activeTab === 'information' && 
+                        <div>
+                            <form action="" className="flex justify-between px-4" onSubmit={handleSubmit}>
                             <div className="w-auto h-auto">
                                 <div className="mt-8">
                                     <label className="text-[16px]">Primeiro Nome</label>
@@ -139,7 +165,32 @@ export default function Profile() {
 
                         </form>
 
-                        <button type="submit" className="w-[153px] h-[56px] bg-[#1BC768] text-white text-[16px] font-bold rounded-[50px] cursor-pointer mt-[55px] ml-[590px]">Actualizar</button>
+                        <button type="submit" className="w-[153px] h-[56px] bg-[#1BC768] text-white text-[16px] font-bold rounded-[50px] cursor-pointer mt-[55px]">Actualizar</button>
+                        </div>
+                        }
+
+                        {activeTab === 'pass' && 
+                        <div>
+                            <form action="" className="px-4">
+                                <div className="mt-8">
+                                    <label className="text-[16px] block">Digite a sua password</label>
+                                    <input type="password" value={pass} onChange={(e) => setPassword(e.target.value)} className="block w-[332px] h-[59px] rounded-[50px] bg-[#EFEFF1] border-none outline-none p-3 mt-[20px]"/>
+                                </div>
+
+                                <div className="mt-4">
+                                    <label className="text-[16px] block">Nova password</label>
+                                    <input type="password" value={pass} onChange={(e) => setPassword(e.target.value)} className="block w-[332px] h-[59px] rounded-[50px] bg-[#EFEFF1] border-none outline-none p-3 mt-[20px]"/>
+                                </div>
+
+                                <div className="mt-4">
+                                    <label className="text-[16px] block">Confirmar a password</label>
+                                    <input type="password" value={pass} onChange={(e) => setPassword(e.target.value)} className="block w-[332px] h-[59px] rounded-[50px] bg-[#EFEFF1] border-none outline-none p-3 mt-[20px]"/>
+                                </div>
+                            </form>
+
+                            <button type="submit" className="w-[153px] h-[56px] bg-[#1BC768] text-white text-[16px] font-bold rounded-[50px] cursor-pointer mt-[140px]">Actualizar</button>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>

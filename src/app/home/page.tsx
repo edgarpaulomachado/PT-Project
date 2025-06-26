@@ -12,7 +12,7 @@ export default function Home() {
       <div className="px-4 flex justify-between mt-12">
         <div className="w-[347px] h-[128px]">
           <h2 className="text-[32px] text-[#1BC768]">Seja Bem-vindo</h2>
-          <p className="text-[26px]">Edgar Machado</p>
+          <p className="text-[26px]"></p>
         </div>
 
         <div className="flex gap-2">
