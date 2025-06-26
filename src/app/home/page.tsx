@@ -1,11 +1,21 @@
+'use client';
+
 import Header from "../../components/header";
 import Image from 'next/image';
 import filter from "../../../public/filter.png";
 import arrow2 from "../../../public/Arrow 2.png";
 import calendar from "../../../public/calendar.png";
 import frame from "../../../public/Frame.png";
+import {useRouter} from 'next/navigation';
 
 export default function Home() {
+
+  const router = useRouter();
+
+  const handClick = () => {
+    router.push('./tst')
+  }
+
   return (
     <>
       <Header />
@@ -24,7 +34,7 @@ export default function Home() {
             </div>
           </div>
 
-          <button className="w-[183px] h-[64px] rounded-[100px] bg-[#1BC768] flex justify-between px-3 my-auto cursor-pointer">
+          <button className="w-[183px] h-[64px] rounded-[100px] bg-[#1BC768] flex justify-between px-3 my-auto cursor-pointer" onClick={handClick}>
             <p className="text-white text-[20px] my-auto">Consulta</p>
             <Image src={arrow2} alt={""} width={23.23} className="my-auto"/>
           </button>
