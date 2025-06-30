@@ -6,14 +6,21 @@ import logo from "../../../public/logo.png";
 import something from "../../../public/Group 1000007863.png";
 import eye from "../../../public/pajamas_eye.png";
 import something2 from "../../../public/Group 1000007862.png";
+import {useRouter} from "next/navigation";
 
 
 export default function Test() {
+
+    const router = useRouter();
+    const handleClick = () => {
+        router.push('/tst/details');
+    };
+
     return ( 
         <div className="w-full h-screen overflow-x-hidden bg-white">
             <Image src={something} alt={''} />
 
-            <div className="w-[124px] h-[55px] mx-auto -mt-[60px]">
+            <div className="w-[124px] h-[55px] mx-auto -mt-[60px]" >
                 <h2 className="text-[50px] text-[#1BC768] ">Olhos</h2>
                 <div className="flex gap-1">
                     <h2 className="text-[45px] text-black">Café</h2>
@@ -31,7 +38,7 @@ export default function Test() {
             </div>
 
             <div className="w-[547px] h-[212px] mx-auto mt-[100px] block">
-                <button type="button" className="w-[547px] h-[70px] bg-[#1BC768] text-center text-white flex items-center justify-center gap-2 rounded-[50px] border-none cursor-pointer">
+                <button type="button" className="w-[547px] h-[70px] bg-[#1BC768] text-center text-white flex items-center justify-center gap-2 rounded-[50px] border-none cursor-pointer" onClick={handleClick}>
                     
                     <Image src={eye} alt={''} />
                     INICIAR TESTES
