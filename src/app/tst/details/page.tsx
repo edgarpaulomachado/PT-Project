@@ -11,7 +11,7 @@ export default function Details() {
     const router = useRouter();
     
     const handleClick = () => {
-        router.push('/details/firstTest');
+        router.push('./firstTest');
     }
 
     return (
