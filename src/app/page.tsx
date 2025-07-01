@@ -139,7 +139,7 @@ export default function AuthPage() {
                     </label>
                     <button
                       type="submit"
-                      className="w-[153px] h-[56px] bg-[#1BC768] text-white text-[16px] font-bold rounded-[50px]"
+                      className="w-[153px] h-[56px] bg-[#1BC768] text-white text-[16px] font-bold rounded-[50px] cursor-pointer"
                     >
                       {showLogin ? 'Entrar' : 'Cadastrar-se'}
                     </button>
