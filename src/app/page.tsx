@@ -27,7 +27,7 @@ export default function AuthPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     localStorage.setItem('userData', JSON.stringify(formData));
-    router.push('../home');
+    router.push('../tst');
   };
 
   return (
