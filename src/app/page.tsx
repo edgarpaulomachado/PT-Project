@@ -19,13 +19,14 @@ export default function AuthPage() {
   const router = useRouter();
   const [showLogin, setShowLogin] = useState(false);
   const [formData, setFormData] = useState<UserData>({});
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const isAuthenticated = localStorage.getItem('authenticated');
-    if (isAuthenticated) {
-      router.replace('/tst'); // já autenticado, redireciona
+    if (isAuthenticated === 'true') {
+      router.replace('/tst');
     }
-  }, []);
+  }, [router]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -34,16 +35,37 @@ export default function AuthPage() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Simulação simples de login/cadastro
-    localStorage.setItem('userData', JSON.stringify(formData));
-    localStorage.setItem('authenticated', 'true');
+  
+    if (!formData.nome || !formData.pass || (!showLogin && !formData.email)) {
+      setError('Por favor, preencha todos os campos.');
+      return;
+    }
 
-    router.replace('/tst'); // redireciona e impede voltar
+    setError(null);
+
+    if (showLogin) {
+      
+      const storedUser = JSON.parse(localStorage.getItem('userData') || '{}');
+      if (
+        storedUser.nome === formData.nome &&
+        storedUser.pass === formData.pass
+      ) {
+        localStorage.setItem('authenticated', 'true');
+        router.replace('/tst'); 
+      } else {
+        setError('Credenciais inválidas. Tente novamente.');
+      }
+    } else {
+    
+      localStorage.setItem('userData', JSON.stringify(formData));
+      localStorage.setItem('authenticated', 'true');
+      router.replace('/tst'); 
+    }
   };
 
   return (
     <>
-      {/* Header */}
+      
       <div className="flex justify-between w-full h-[296px] pl-8 pr-4 py-8 bg-[#1BC768] relative">
         <div className="w-[221px] h-[98px]">
           <h2 className="text-6xl text-white">Olhos</h2>
@@ -60,9 +82,9 @@ export default function AuthPage() {
         </div>
       </div>
 
-      {/* Corpo */}
+      
       <div className="w-full absolute pr-8 -mt-[120px] flex justify-between">
-        {/* Imagem */}
+        
         <div>
           <Image src={doctor} alt="Doutor" />
           <Image src={ellipse} alt="Ellipse" className="-mt-[230px] ml-[40px]" />
@@ -74,12 +96,15 @@ export default function AuthPage() {
           </div>
         </div>
 
-        {/* Formulário */}
+        
         <div className="w-[600px] h-[755px] rounded-[25px] bg-[#F9F9F8]">
-          {/* Botões de alternância */}
+          
           <div className="h-[110px] pl-8 flex gap-6">
             <button
-              onClick={() => setShowLogin(true)}
+              onClick={() => {
+                setShowLogin(true);
+                setError(null);
+              }}
               className={`mt-[50px] pb-2 text-[30px] font-bold ${
                 showLogin ? 'border-b-2 border-[#1BC768]' : 'text-black'
               }`}
@@ -87,7 +112,10 @@ export default function AuthPage() {
               Login
             </button>
             <button
-              onClick={() => setShowLogin(false)}
+              onClick={() => {
+                setShowLogin(false);
+                setError(null);
+              }}
               className={`mt-[50px] pb-2 text-[30px] font-bold ${
                 !showLogin ? 'border-b-2 border-[#1BC768]' : 'text-black'
               }`}
@@ -96,7 +124,7 @@ export default function AuthPage() {
             </button>
           </div>
 
-          {/* Formulário de autenticação */}
+          
           <div className="w-full h-[645px] rounded-t-[45px] rounded-b-[25px] px-4 py-12 bg-white">
             <div className="w-[365px] h-[49px] flex justify-between mx-auto">
               <div className="w-[178px] h-[48px] bg-[#EEEEEE] rounded-[16px] flex items-center gap-2 justify-center cursor-pointer">
@@ -110,6 +138,9 @@ export default function AuthPage() {
             </div>
 
             <form onSubmit={handleSubmit} className="w-[401px] mt-[80px] mx-auto">
+              {error && (
+                <p className="text-red-500 text-center text-[14px] mb-4">{error}</p>
+              )}
               <div className="mt-4">
                 <label className="text-[16px] font-bold">
                   {showLogin ? 'Username' : 'Nome'}
@@ -120,6 +151,7 @@ export default function AuthPage() {
                   value={formData.nome || ''}
                   onChange={handleInputChange}
                   className="w-[380px] border-b-2 border-[#BDBDBD] outline-none mt-[6px]"
+                  placeholder={showLogin ? 'Digite o seu username' : 'Digite o seu nome'}
                 />
               </div>
 
@@ -132,6 +164,7 @@ export default function AuthPage() {
                     value={formData.email || ''}
                     onChange={handleInputChange}
                     className="w-[380px] border-b-2 border-[#BDBDBD] outline-none mt-[6px]"
+                    placeholder="Digite o seu email"
                   />
                 </div>
               )}
@@ -144,6 +177,7 @@ export default function AuthPage() {
                   value={formData.pass || ''}
                   onChange={handleInputChange}
                   className="w-[380px] border-b-2 border-[#BDBDBD] outline-none mt-[6px]"
+                  placeholder="Digite a sua senha"
                 />
               </div>
 
@@ -163,7 +197,10 @@ export default function AuthPage() {
               <p className="text-[12px] text-[#424242] text-center mt-[50px]">
                 {showLogin ? 'Ainda não tens uma conta?' : 'Já tens uma conta?'}{' '}
                 <span
-                  onClick={() => setShowLogin(!showLogin)}
+                  onClick={() => {
+                    setShowLogin(!showLogin);
+                    setError(null);
+                  }}
                   className="text-[#1BC768] font-bold cursor-pointer"
                 >
                   {showLogin ? 'Registar-se' : 'Iniciar sessão'}
